@@ -5,7 +5,6 @@ export const dev = {
 	ownerAccount: 'mtoribio',
 	cicdRepo: 'foundational',
 	cicdBranch: 'development',
-	accountId: '364964202465',
 };
 
 export const prod = {
@@ -15,5 +14,4 @@ export const prod = {
 	ownerAccount: '',
 	cicdRepo: 'HRMGO_PIPELINE',
 	cicdBranch: 'main',
-	accountId: '364964202465',
 };

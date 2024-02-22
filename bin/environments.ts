@@ -3,14 +3,10 @@ export const dev = {
 	project: 'hrmgo',
 	environment: 'dev',
 	ownerAccount: 'mtoribio',
-	infraRepo: 'HRMGO_INFRA',
-	infraBranch: 'development',
 	// cicdRepo: 'HRMGO_PIPELINE',
 	// cicdBranch: 'development',
-	cicdRepo: 'pipelinetest',
-	cicdBranch: 'main',
-	appRepo: 'NewHRMv2.0',
-	appBranch: 'dev_morrison',
+	cicdRepo: 'foundational',
+	cicdBranch: 'development',
 	accountId: '364964202465',
 };
 
@@ -19,11 +15,7 @@ export const prod = {
 	project: 'hrmgo',
 	environment: 'prod',
 	ownerAccount: '',
-	infraRepo: 'HRMGO_INFRA',
-	infraBranch: 'main',
 	cicdRepo: 'HRMGO_PIPELINE',
 	cicdBranch: 'main',
-	appRepo: 'NewHRMv2.0',
-	appBranch: 'main',
 	accountId: '364964202465',
 };

@@ -21,11 +21,11 @@ export const cicdBuildActions = (scope: Construct, props: CiCdBuildActionsProps)
 	const projects = cicdBuildProjects(scope);
 
 	// Conectar al repositorio en Github
-	const nameParameter = createName('ps', 'cicd-conn-arn');
-	const connectionArn = ssm.StringParameter.fromStringParameterName(scope, 'CiCdConnARN', nameParameter).stringValue;
+	const nameParameter = createName('ps', 'conn-arn');
+	const connectionArn = ssm.StringParameter.fromStringParameterName(scope, 'ConnARN', nameParameter).stringValue;
 
 	// Artifact del Source
-	const nameSourceArtifact = createName('artifact', 'cicd-connection');
+	const nameSourceArtifact = createName('artifact', 'cicd-source');
 	const sourceArtifact = new Artifact(nameSourceArtifact);
 	// CodeStarConnections action
 	const source = new CodeStarConnectionsSourceAction({

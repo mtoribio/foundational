@@ -9,7 +9,7 @@ export const cicdBuildProjects = (scope: Construct) => {
 	const linter = new PipelineProject(scope, 'CodeBuildCiCdProjectLinting', {
 		projectName: createName('codebuild', 'cicd-linting'),
 		environment: {
-			buildImage: LinuxBuildImage.STANDARD_6_0,
+			buildImage: LinuxBuildImage.STANDARD_7_0,
 		},
 		timeout: cdk.Duration.minutes(100),
 		buildSpec: BuildSpec.fromObject({
@@ -17,13 +17,9 @@ export const cicdBuildProjects = (scope: Construct) => {
 			phases: {
 				install: {
 					'runtime-versions': {
-						nodejs: '16',
+						nodejs: '18',
 					},
-					commands: [
-						'node -v',
-						'npm install -g eslint',
-						'npm install eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin',
-					],
+					commands: ['node -v', 'npm install'],
 				},
 				build: {
 					commands: ['npm run eslint'],
@@ -36,7 +32,7 @@ export const cicdBuildProjects = (scope: Construct) => {
 	const synth = new PipelineProject(scope, 'CodeBuildCiCdProjectSynth', {
 		projectName: createName('codebuild', 'cicd-synth'),
 		environment: {
-			buildImage: LinuxBuildImage.STANDARD_6_0,
+			buildImage: LinuxBuildImage.STANDARD_7_0,
 		},
 		timeout: cdk.Duration.minutes(100),
 		buildSpec: BuildSpec.fromObject({
@@ -44,18 +40,13 @@ export const cicdBuildProjects = (scope: Construct) => {
 			phases: {
 				install: {
 					'runtime-versions': {
-						nodejs: '16',
+						nodejs: '18',
 					},
-					commands: ['node -v', 'sudo npm install -g aws-cdk', 'npm install'],
+					commands: ['node -v', 'npm install'],
 				},
 				build: {
 					commands: ['cdk synth'],
 				},
-			},
-			artifacts: {
-				'base-directory': '.',
-				files: ['**/*'],
-				'exclude-paths': ['node_modules/**'],
 			},
 		}),
 	});
@@ -64,7 +55,7 @@ export const cicdBuildProjects = (scope: Construct) => {
 	const deploy = new PipelineProject(scope, 'CodeBuildCiCdProjectDeploy', {
 		projectName: createName('codebuild', 'cicd-deploy'),
 		environment: {
-			buildImage: LinuxBuildImage.STANDARD_6_0,
+			buildImage: LinuxBuildImage.STANDARD_7_0,
 		},
 		timeout: cdk.Duration.minutes(100),
 		buildSpec: BuildSpec.fromObject({
@@ -72,17 +63,12 @@ export const cicdBuildProjects = (scope: Construct) => {
 			phases: {
 				install: {
 					'runtime-versions': {
-						nodejs: '16',
+						nodejs: '18',
 					},
-					commands: ['node -v'],
+					commands: ['node -v', 'npm install'],
 				},
 				build: {
-					commands: [
-						'rm -rf node_modules',
-						'sudo npm install -g aws-cdk',
-						'npm install',
-						'cdk deploy --all --method=direct --require-approval never',
-					],
+					commands: ['cdk deploy --all --method=direct --require-approval never'],
 				},
 			},
 		}),

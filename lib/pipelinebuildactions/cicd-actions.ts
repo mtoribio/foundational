@@ -45,22 +45,18 @@ export const cicdBuildActions = (scope: Construct, props: CiCdBuildActionsProps)
 		input: sourceArtifact,
 	});
 
-	// Artifact del Synth
-	const nameBuildArtifactSynth = createName('artifact', 'cicd-build-synth');
-	const buildArtifactSynth = new Artifact(nameBuildArtifactSynth);
 	// CodeBuild action Synth
 	const synth = new CodeBuildAction({
 		actionName: createName('codebuild', 'cicd-synth-action'),
 		project: projects.synth,
 		input: sourceArtifact,
-		outputs: [buildArtifactSynth],
 	});
 
 	// CodeBuild action Deploy
 	const deploy = new CodeBuildAction({
 		actionName: createName('codebuild', 'cicd-deploy-action'),
 		project: projects.deploy,
-		input: buildArtifactSynth,
+		input: sourceArtifact,
 	});
 
 	return {

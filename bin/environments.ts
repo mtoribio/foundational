@@ -3,7 +3,7 @@ export const dev = {
 	project: 'hrmgo',
 	environment: 'dev',
 	ownerAccount: 'mtoribio',
-	cicdRepo: 'foundational',
+	cicdRepo: 'repo_pipelines',
 	cicdBranch: 'development',
 };
 

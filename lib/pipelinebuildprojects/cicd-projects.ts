@@ -42,7 +42,7 @@ export const cicdBuildProjects = (scope: Construct) => {
 					'runtime-versions': {
 						nodejs: '18',
 					},
-					commands: ['node -v', 'npm install'],
+					commands: ['node -v', 'sudo npm install -g aws-cdk', 'npm install'],
 				},
 				build: {
 					commands: ['cdk synth'],
@@ -65,7 +65,7 @@ export const cicdBuildProjects = (scope: Construct) => {
 					'runtime-versions': {
 						nodejs: '18',
 					},
-					commands: ['node -v', 'npm install'],
+					commands: ['node -v', 'sudo npm install -g aws-cdk', 'npm install'],
 				},
 				build: {
 					commands: ['cdk deploy --all --method=direct --require-approval never'],

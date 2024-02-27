@@ -1,17 +1,28 @@
-export const dev = {
-	region: 'us-east-2',
-	project: 'hrmgo',
-	environment: 'dev',
-	ownerAccount: 'mtoribio',
-	cicdRepo: 'repo_pipelines',
-	cicdBranch: 'development',
-};
+interface Environment {
+	region: string;
+	project: string;
+	environment: string;
+	ownerAccount: string;
+	cicdRepo: string;
+	cicdBranch: string;
+}
 
-export const prod = {
-	region: 'us-east-2',
-	project: 'hrmgo',
-	environment: 'prod',
-	ownerAccount: '',
-	cicdRepo: 'HRMGO_PIPELINE',
-	cicdBranch: 'main',
+export const environments: { [key: string]: Environment } = {
+	dev: {
+		region: 'us-east-2',
+		project: 'hrmgo',
+		environment: 'dev',
+		ownerAccount: 'mtoribio',
+		cicdRepo: 'repo_pipelines',
+		cicdBranch: 'development',
+	},
+
+	prod: {
+		region: 'us-east-2',
+		project: 'hrmgo',
+		environment: 'prod',
+		ownerAccount: 'overalldev',
+		cicdRepo: 'HRMGO_PIPELINE',
+		cicdBranch: 'main',
+	},
 };

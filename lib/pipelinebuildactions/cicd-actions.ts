@@ -1,7 +1,7 @@
 import { Artifact } from 'aws-cdk-lib/aws-codepipeline';
 import { CodeStarConnectionsSourceAction, CodeBuildAction } from 'aws-cdk-lib/aws-codepipeline-actions';
 import { cicdBuildProjects } from '../pipelinebuildprojects/cicd-projects';
-import { createName } from '../../utils/createName';
+import { createName } from '../../bin/foundational';
 import { Construct } from 'constructs';
 import * as ssm from 'aws-cdk-lib/aws-ssm';
 

@@ -12,8 +12,8 @@ export const environments: { [key: string]: Environment } = {
 		region: 'us-east-2',
 		project: 'hrmgo',
 		environment: 'dev',
-		ownerAccount: 'mtoribio',
-		cicdRepo: 'repo_pipelines',
+		ownerAccount: 'overalldev',
+		cicdRepo: 'HRMGO_PIPELINE',
 		cicdBranch: 'development',
 	},
 

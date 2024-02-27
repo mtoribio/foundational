@@ -18,7 +18,7 @@ export interface CiCdBuildActionsProps {
 
 export const cicdBuildActions = (scope: Construct, props: CiCdBuildActionsProps) => {
 	// Crear los build projects
-	const projects = cicdBuildProjects(scope);
+	const projects = cicdBuildProjects(scope, props);
 
 	// Conectar al repositorio en Github
 	const nameParameter = createName('ps', 'conn-arn');

@@ -4,7 +4,18 @@ import { createName } from '../../bin/foundational';
 import { Construct } from 'constructs';
 import * as iam from 'aws-cdk-lib/aws-iam';
 
-export const cicdBuildProjects = (scope: Construct) => {
+export interface CiCdBuildProjectsProps {
+	env: {
+		region: string;
+		project: string;
+		environment: string;
+		ownerAccount: string;
+		cicdRepo: string;
+		cicdBranch: string;
+	};
+}
+
+export const cicdBuildProjects = (scope: Construct, props: CiCdBuildProjectsProps) => {
 	// Crear un CodeBuild para Linting
 	const linter = new PipelineProject(scope, 'CodeBuildCiCdProjectLinting', {
 		projectName: createName('codebuild', 'cicd-linting'),
@@ -45,7 +56,7 @@ export const cicdBuildProjects = (scope: Construct) => {
 					commands: ['node -v', 'sudo npm install -g aws-cdk', 'npm install'],
 				},
 				build: {
-					commands: ['cdk synth'],
+					commands: [`cdk synth -c config=${props.env.environment}`],
 				},
 			},
 		}),
@@ -68,7 +79,7 @@ export const cicdBuildProjects = (scope: Construct) => {
 					commands: ['node -v', 'sudo npm install -g aws-cdk', 'npm install'],
 				},
 				build: {
-					commands: ['cdk deploy --all --method=direct --require-approval never'],
+					commands: [`cdk deploy --all -c config=${props.env.environment} --method=direct --require-approval never`],
 				},
 			},
 		}),
